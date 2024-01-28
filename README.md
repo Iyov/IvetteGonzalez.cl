@@ -1,2 +1,2 @@
 # IvetteGonzalez.cl
-Sitio de "https:ivettegonzalez.cl"
+Sitio de "https://ivettegonzalez.cl"
