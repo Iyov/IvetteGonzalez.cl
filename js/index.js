@@ -30,13 +30,13 @@ const motivationalMessages = {
 
 // Imágenes reales de masoterapia para cada día de la semana
 const backgroundImages = [
-    "url('https://images.unsplash.com/photo-1544161515-73676e544c64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')", // Lunes - Masaje de espalda
-    "url('https://images.unsplash.com/photo-1544168212-5d5c78c777f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')", // Martes - Masaje de pies
-    "url('https://images.unsplash.com/photo-1591348278994-42bbd3f566737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')", // Miércoles - Masaje de cuello
-    "url('https://images.unsplash.com/photo-1591348278994-42bbd3f566737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')", // Jueves - Masaje de hombros
-    "url('https://images.unsplash.com/photo-1544168212-5d5c78c777f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')", // Viernes - Masaje de manos
-    "url('https://images.unsplash.com/photo-1544168515-7157a5fbe2f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')", // Sábado - Ambiente relajante
-    "url('https://images.unsplash.com/photo-1544168515-7157a5fbe2f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')"  // Domingo - Ambiente de spa
+    "url('../img/01.jpg')", // Lunes - Masaje de espalda
+    "url('../img/02.jpg')", // Martes - Masaje de pies
+    "url('../img/03.jpg')", // Miércoles - Masaje de cuello
+    "url('../img/04.jpg')", // Jueves - Masaje de hombros
+    "url('../img/05.jpg')", // Viernes - Masaje de manos
+    "url('../img/06.jpg')", // Sábado - Ambiente relajante
+    "url('../img/07.jpg')"  // Domingo - Ambiente de spa
 ];
 
 // Cargar preferencias guardadas
