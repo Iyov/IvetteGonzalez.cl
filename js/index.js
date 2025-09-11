@@ -76,8 +76,17 @@ function switchLanguage(lang) {
         }
     });
     
-    // Actualizar tooltips
-    updateTooltip(themeToggleBtn, lang);
+    // Actualizar botones de tema e idioma
+    //updateTooltip(themeToggleBtn, lang); // Fix error 2025-09-10
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', 'dark');
+        updateTooltip(themeToggleBtn, lang);
+    } else {
+        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('theme', 'light');
+        updateTooltip(themeToggleBtn, lang);
+    }
     updateTooltip(languageToggleBtn, lang);
     
     localStorage.setItem('language', lang);
