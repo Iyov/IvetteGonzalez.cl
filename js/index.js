@@ -9,34 +9,34 @@ const messageImage = document.getElementById('message-image');
 // Mensajes motivacionales en español e inglés
 const motivationalMessages = {
     es: [
+        "Domingo: Que este día esté lleno de paz y serenidad. Un masaje puede ser el regalo perfecto para despedir la semana y prepararte para lo que viene.",
         "Lunes: Comienza la semana renovando tu energía con un masaje relajante. Tu bienestar es tu prioridad.",
         "Martes: Cada tensión liberada es un paso hacia una mente y cuerpo más equilibrados. ¡Disfruta de tu sesión de masoterapia hoy!",
         "Miércoles: Recuerda que tu cuerpo merece cuidados constantes. Un masaje es la mejor manera de consentirte a ti mismo.",
         "Jueves: A medida que la semana avanza, deja que la masoterapia libere el estrés acumulado y restaure tu vitalidad.",
         "Viernes: Prepárate para el fin de semana con un masaje que revitalice tu cuerpo y mente. ¡Estás a punto de recargar tus energías!",
-        "Sábado: El fin de semana es perfecto para reconectar contigo mismo. Regálate un masaje y permite que la relajación te renueve por completo.",
-        "Domingo: Que este día esté lleno de paz y serenidad. Un masaje puede ser el regalo perfecto para despedir la semana y prepararte para lo que viene."
+        "Sábado: El fin de semana es perfecto para reconectar contigo mismo. Regálate un masaje y permite que la relajación te renueve por completo."
     ],
     en: [
+        "Sunday: May this day be full of peace and serenity. A massage can be the perfect gift to say goodbye to the week and prepare for what's to come.",
         "Monday: Start the week by renewing your energy with a relaxing massage. Your well-being is your priority.",
         "Tuesday: Every released tension is a step towards a more balanced mind and body. Enjoy your massage therapy session today!",
         "Wednesday: Remember that your body deserves constant care. A massage is the best way to pamper yourself.",
         "Thursday: As the week progresses, let massage therapy release accumulated stress and restore your vitality.",
         "Friday: Prepare for the weekend with a massage that revitalizes your body and mind. You're about to recharge your energies!",
-        "Saturday: The weekend is perfect to reconnect with yourself. Give yourself a massage and allow relaxation to completely renew you.",
-        "Sunday: May this day be full of peace and serenity. A massage can be the perfect gift to say goodbye to the week and prepare for what's to come."
+        "Saturday: The weekend is perfect to reconnect with yourself. Give yourself a massage and allow relaxation to completely renew you."
     ]
 };
 
 // Imágenes reales de masoterapia para cada día de la semana
 const backgroundImages = [
-    "url('../img/01.jpg')", // Lunes - Masaje de espalda
-    "url('../img/02.jpg')", // Martes - Masaje de pies
-    "url('../img/03.jpg')", // Miércoles - Masaje de cuello
-    "url('../img/04.jpg')", // Jueves - Masaje de hombros
-    "url('../img/05.jpg')", // Viernes - Masaje de manos
-    "url('../img/06.jpg')", // Sábado - Ambiente relajante
-    "url('../img/07.jpg')"  // Domingo - Ambiente de spa
+    "url('../img/01.jpg')", // Domingo
+    "url('../img/02.jpg')", // Lunes
+    "url('../img/03.jpg')", // Martes
+    "url('../img/04.jpg')", // Miércoles
+    "url('../img/05.jpg')", // Jueves
+    "url('../img/06.jpg')", // Viernes
+    "url('../img/07.jpg')"  // Sábado
 ];
 
 // Cargar preferencias guardadas
