@@ -18,7 +18,7 @@ const motivationalMessages = {
         "Recuerda que tu cuerpo merece cuidados constantes. Un masaje es la mejor manera de consentirte a ti mismo.",
         "A medida que la semana avanza, deja que la masoterapia libere el estrés acumulado y restaure tu vitalidad.",
         "Prepárate para el fin de semana con un masaje que revitalice tu cuerpo y mente. ¡Estás a punto de recargar tus energías!",
-        "El fin de semana es perfecto para reconectar contigo mismo. Regálate un masaje y permite que la relajación te renueve por completo.",
+        "El fin de weekend es perfecto para reconectar contigo mismo. Regálate un masaje y permite que la relajación te renueve por completo.",
         "Que este día esté lleno de paz y serenidad. Un masaje puede ser el regalo perfecto para despedir la semana y prepararte para lo que viene."
     ],
     en: [
@@ -80,8 +80,17 @@ function switchLanguage(lang) {
         }
     });
     
-    // Actualizar tooltips
-    updateTooltip(themeToggleBtn, lang);
+    // Actualizar botones de tema e idioma
+    //updateTooltip(themeToggleBtn, lang); // Fix error 2025-09-10
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', 'dark');
+        updateTooltip(themeToggleBtn, lang);
+    } else {
+        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('theme', 'light');
+        updateTooltip(themeToggleBtn, lang);
+    }
     updateTooltip(languageToggleBtn, lang);
     
     localStorage.setItem('language', lang);
@@ -155,11 +164,11 @@ function setupFaqToggle() {
             faqItem.classList.toggle('active');
             
             // Cerrar otras preguntas abiertas (opcional)
-            /* faqItems.forEach(item => {
+            faqItems.forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
-            }); */
+            });
         });
     });
 }

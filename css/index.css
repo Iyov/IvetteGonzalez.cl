@@ -51,7 +51,7 @@ body {
     transition: width 0.3s ease;
 }
 
-/* Botón para volver arriba */
+/* BotÃ³n para volver arriba */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -121,7 +121,7 @@ header {
 }
 
 .nav-links li {
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .nav-links a {
@@ -129,6 +129,8 @@ header {
     color: var(--text-color);
     font-weight: 500;
     transition: var(--transition);
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -337,7 +339,7 @@ section {
     text-align: center;
 }
 
-/* Estilos para la sección de testimonios */
+/* Estilos para la secciÃ³n de testimonios */
 .testimonials {
     background-color: var(--bg-color);
 }
@@ -412,7 +414,7 @@ section {
     opacity: 0.7;
 }
 
-/* Estilos para la sección de preguntas frecuentes */
+/* Estilos para la secciÃ³n de preguntas frecuentes */
 .faq {
     background-color: var(--bg-color);
 }
@@ -526,7 +528,17 @@ footer {
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .nav-links li {
+        margin-left: 15px;
+    }
+    
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 900px) {
     .header-content {
         display: flex;
         justify-content: center;
@@ -558,6 +570,7 @@ footer {
         padding: 20px 0;
         box-shadow: var(--shadow);
         transition: var(--transition);
+        z-index: 999;
     }
 
     .nav-links.active {
@@ -566,6 +579,10 @@ footer {
 
     .nav-links li {
         margin: 15px 0;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
     }
 
     .hamburger {
@@ -627,5 +644,28 @@ footer {
 
     .footer-links li {
         margin: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .controls {
+        margin-left: 10px;
+    }
+    
+    .control-btn {
+        margin-left: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
     }
 }

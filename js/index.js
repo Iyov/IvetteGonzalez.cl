@@ -164,11 +164,11 @@ function setupFaqToggle() {
             faqItem.classList.toggle('active');
             
             // Cerrar otras preguntas abiertas (opcional)
-            /* faqItems.forEach(item => {
+            faqItems.forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
-            }); */
+            });
         });
     });
 }
