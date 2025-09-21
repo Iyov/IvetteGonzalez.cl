@@ -5,6 +5,10 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const motivationalMessage = document.getElementById('motivational-message');
 const messageImage = document.getElementById('message-image');
+const backToTopBtn = document.getElementById('backToTop');
+const progressBar = document.getElementById('progressBar');
+const logoTop = document.getElementById('logoTop');
+const faqItems = document.querySelectorAll('.faq-item');
 
 // Mensajes motivacionales en español e inglés
 const motivationalMessages = {
@@ -124,6 +128,51 @@ function updateMotivationalMessage() {
     }
 }
 
+// Función para la barra de progreso
+function updateProgressBar() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrollPosition = window.scrollY;
+    const progress = (scrollPosition / documentHeight) * 100;
+    progressBar.style.width = progress + '%';
+}
+
+// Función para mostrar/ocultar el botón de volver arriba
+function toggleBackToTop() {
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+    } else {
+        backToTopBtn.classList.remove('show');
+    }
+}
+
+// Función para hacer scroll suave
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Función para alternar preguntas FAQ - CORREGIDA
+function setupFaqToggle() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            faqItem.classList.toggle('active');
+            
+            // Cerrar otras preguntas abiertas (opcional)
+            /* faqItems.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            }); */
+        });
+    });
+}
+
 // Event Listeners
 themeToggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
@@ -164,8 +213,23 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+// Event listeners para scroll
+window.addEventListener('scroll', () => {
+    updateProgressBar();
+    toggleBackToTop();
+});
+
+// Event listener para el botón de volver arriba
+backToTopBtn.addEventListener('click', scrollToTop);
+
+// Event listener para el logo
+logoTop.addEventListener('click', scrollToTop);
+
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
     loadPreferences();
     updateMotivationalMessage();
+    updateProgressBar();
+    toggleBackToTop();
+    setupFaqToggle(); // Configurar el toggle de FAQ
 });
