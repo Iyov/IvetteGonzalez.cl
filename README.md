@@ -1,7 +1,7 @@
 # Ivette González - IvetteGonzalez.cl
 Website https://ivettegonzalez.cl
 
-![Ivette González Logo](img/Logo_IG_500.png)
+![Ivette González Logo](img/Ivette_Gonzalez_Logo_500.png)
 
 ## Massage Therapy and Handmade Soaps
 
@@ -20,3 +20,5 @@ My approach focuses on providing personalized care that combines traditional tec
 * ✅ Facebook: @ivette.rifo (https://web.facebook.com/ivette.rifo)
 * ✅ ivettegonzalezrifo@gmail.com (mailto:ivettegonzalezrifo@gmail.com)
 * ✅ Twitter (X): @IveMasoterapia (https://twitter.com/IveMasoterapia)
+
+© 2026 Ivette González - Todos los derechos reservados
