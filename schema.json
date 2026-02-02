@@ -1,22 +1,106 @@
 {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Ivette González - Masoterapeuta",
-    "description": "Servicios profesionales de masoterapia y jabones artesanales naturales en Chile.",
-    "url": "https://ivettegonzalez.cl",
-    "logo": "https://ivettegonzalez.cl/img/Ivette_Gonzalez_Logo_500.png",
-    "image": "https://ivettegonzalez.cl/img/Ivette_Gonzalez_Logo_500.png",
-    "telephone": "+56996138109",
-    "email": "ivettegonzalezrifo@gmail.com",
-    "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "CL"
-    },
-    "areaServed": "Chile",
-    "serviceType": "Masoterapia y venta de jabones artesanales",
-    "sameAs": [
-        "https://www.instagram.com/masoterapia.ivette/",
-        "https://web.facebook.com/ivette.rifo",
-        "https://twitter.com/IveMasoterapia"
+    "@graph": [
+        {
+            "@type": "LocalBusiness",
+            "@id": "https://ivettegonzalez.cl/#business",
+            "name": "Ivette González - Masoterapeuta",
+            "description": "Servicios profesionales de masoterapia y jabones artesanales naturales en Chile. Especialista en terapias de relajación, recuperación muscular y bienestar integral.",
+            "url": "https://ivettegonzalez.cl",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ivettegonzalez.cl/img/Ivette_Gonzalez_Logo_500.png",
+                "width": 500,
+                "height": 500
+            },
+            "image": [
+                "https://ivettegonzalez.cl/img/Ivette_Gonzalez_Logo_500.png",
+                "https://ivettegonzalez.cl/img/Masoterapia [1].jpg"
+            ],
+            "telephone": "+56996138109",
+            "email": "ivettegonzalezrifo@gmail.com",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "CL",
+                "addressRegion": "Chile"
+            },
+            "areaServed": {
+                "@type": "Country",
+                "name": "Chile"
+            },
+            "serviceType": ["Masoterapia", "Jabones artesanales", "Terapias naturales", "Masajes relajantes", "Recuperación muscular"],
+            "priceRange": "$$",
+            "openingHours": "Mo-Sa 09:00-18:00",
+            "sameAs": [
+                "https://www.instagram.com/masoterapia.ivette/",
+                "https://web.facebook.com/ivette.rifo",
+                "https://twitter.com/IveMasoterapia"
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Servicios de Masoterapia",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Masaje Relajante",
+                            "description": "Masaje terapéutico para relajación y bienestar general"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Masaje Descontracturante",
+                            "description": "Masaje especializado para alivio de tensiones musculares"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Product",
+                            "name": "Jabones Artesanales Naturales",
+                            "description": "Jabones elaborados con ingredientes naturales, libres de químicos agresivos"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "https://ivettegonzalez.cl/#person",
+            "name": "Ivette González",
+            "jobTitle": "Masoterapeuta Profesional",
+            "description": "Masoterapeuta certificada con años de experiencia en terapias de relajación y recuperación muscular",
+            "url": "https://ivettegonzalez.cl",
+            "image": "https://ivettegonzalez.cl/img/Ivette_Gonzalez_Logo_500.png",
+            "telephone": "+56996138109",
+            "email": "ivettegonzalezrifo@gmail.com",
+            "sameAs": [
+                "https://www.instagram.com/masoterapia.ivette/",
+                "https://web.facebook.com/ivette.rifo",
+                "https://twitter.com/IveMasoterapia"
+            ],
+            "worksFor": {
+                "@id": "https://ivettegonzalez.cl/#business"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://ivettegonzalez.cl/#website",
+            "url": "https://ivettegonzalez.cl",
+            "name": "Ivette González - Masoterapeuta Profesional",
+            "description": "Sitio web oficial de Ivette González, masoterapeuta profesional especializada en terapias naturales y jabones artesanales",
+            "publisher": {
+                "@id": "https://ivettegonzalez.cl/#person"
+            },
+            "inLanguage": "es-CL",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://ivettegonzalez.cl/?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
     ]
 }
