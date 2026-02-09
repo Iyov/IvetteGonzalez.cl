@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <link rel="preload" href="css/font-awesome_6.4.0_all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="css/font-awesome_6.4.0_all.min.css"></noscript>
-    <link rel="stylesheet" href="css/index.css?v=2026-02-08_2" type="text/css" />
+    <link rel="stylesheet" href="css/index.css?v=2026-02-08_3" type="text/css" />
 
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -158,14 +158,17 @@
     </div>
 
     <!-- Botón para volver arriba -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba" title="Volver al inicio de la página">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
 
     <header role="banner">
+        <!-- Skip to main content link para accesibilidad -->
+        <a href="#main-content" class="skip-to-content" data-lang-es="Saltar al contenido principal" data-lang-en="Skip to main content">Saltar al contenido principal</a>
+        
         <div class="container">
             <div class="header-content">
-                <div class="logo" id="logoTop">
+                <div class="logo" id="logoTop" role="button" tabindex="0" aria-label="Ivette González - Ir al inicio">
                     <span>Ivette González</span>
                 </div>
                 
@@ -181,24 +184,24 @@
                 </nav>
                 
                 <div class="controls">
-                    <button id="theme-toggle" class="control-btn" title="Cambiar modo claro/oscuro" data-lang-es="Cambiar modo claro/oscuro" data-lang-en="Toggle light/dark mode">
-                        <i class="fas fa-moon"></i>
+                    <button id="theme-toggle" class="control-btn" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro" data-lang-es="Cambiar modo claro/oscuro" data-lang-en="Toggle light/dark mode">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
-                    <button id="language-toggle" class="control-btn" title="Cambiar idioma" data-lang-es="Cambiar idioma" data-lang-en="Change language">
-                        <i class="fas fa-globe"></i>
+                    <button id="language-toggle" class="control-btn" aria-label="Cambiar idioma" title="Cambiar idioma" data-lang-es="Cambiar idioma" data-lang-en="Change language">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
                     </button>
                     
-                    <div class="hamburger">
+                    <button class="hamburger" aria-label="Menú de navegación" aria-expanded="false" aria-controls="nav-menu">
                         <span></span>
                         <span></span>
                         <span></span>
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main role="main">
+    <main role="main" id="main-content">
         <!-- Breadcrumbs -->
         <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <div class="container">
@@ -213,9 +216,9 @@
             </div>
         </nav>
 
-        <section id="home" class="hero">
+        <section id="home" class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h1 data-lang-es="Masoterapia y Jabones Artesanales" data-lang-en="Massage Therapy and Handmade Soaps">Masoterapia y Jabones Artesanales</h1>
+                <h1 id="hero-title" data-lang-es="Masoterapia y Jabones Artesanales" data-lang-en="Massage Therapy and Handmade Soaps">Masoterapia y Jabones Artesanales</h1>
                 
                 <p data-lang-es="Bienestar integral para tu cuerpo y mente a través de terapias naturales y productos artesanales." data-lang-en="Comprehensive wellness for your body and mind through natural therapies and handmade products.">Bienestar integral para tu cuerpo y mente a través de terapias naturales y productos artesanales.</p>
                 
@@ -223,9 +226,9 @@
             </div>
         </section>
 
-        <section id="about">
+        <section id="about" aria-labelledby="about-title">
             <div class="container">
-                <h2 class="section-title" data-lang-es="Quién Soy" data-lang-en="About Me">Quién Soy</h2>
+                <h2 id="about-title" class="section-title" data-lang-es="Quién Soy" data-lang-en="About Me">Quién Soy</h2>
                 
                 <article class="about-content">
                     <div class="about-text">
@@ -242,13 +245,13 @@
             </div>
         </section>
 
-    <section id="testimonials" class="testimonials">
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
         <div class="container">
-            <h2 class="section-title" data-lang-es="Testimonios de Clientes" data-lang-en="Client Testimonials">Testimonios de Clientes</h2>
+            <h2 id="testimonials-title" class="section-title" data-lang-es="Testimonios de Clientes" data-lang-en="Client Testimonials">Testimonios de Clientes</h2>
             <p class="section-description" data-lang-es="Descubre lo que nuestros clientes dicen sobre nuestros servicios de masoterapia y jabones artesanales naturales." data-lang-en="Discover what our clients say about our massage therapy services and natural handmade soaps.">Descubre lo que nuestros clientes dicen sobre nuestros servicios de masoterapia y jabones artesanales naturales.</p>
             
-            <div class="testimonials-container">
-                <div class="testimonial-card">
+            <div class="testimonials-container" role="list">
+                <div class="testimonial-card" role="listitem">
                     <div class="testimonial-content">
                         <img src="img/Cliente1.jpg" alt="Meribel Castillo - Cliente satisfecha con servicios de masoterapia de Ivette González" class="testimonial-image" loading="lazy">
                         <p class="testimonial-text" data-lang-es="Ivette tiene manos mágicas. Después de cada sesión me siento renovada y llena de energía. Sus masajes son simplemente increíbles." data-lang-en="Ivette has magic hands. After each session I feel renewed and full of energy. Her massages are simply amazing.">Ivette tiene manos mágicas. Después de cada sesión me siento renovada y llena de energía. Sus masajes son simplemente increíbles.</p>
@@ -257,7 +260,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card" role="listitem">
                     <div class="testimonial-content">
                         <img src="img/Cliente2.avif" alt="Carlos Rodríguez - Cliente satisfecho con jabones artesanales naturales de Ivette González" class="testimonial-image" loading="lazy">
                         <p class="testimonial-text" data-lang-es="Los jabones artesanales de Ivette son lo mejor que le ha pasado a mi piel. Suaves, aromáticos y naturales. ¡Los recomiendo 100%!" data-lang-en="Ivette's handmade soaps are the best thing that has happened to my skin. Soft, aromatic and natural. I recommend them 100%!">Los jabones artesanales de Ivette son lo mejor que le ha pasado a mi piel. Suaves, aromáticos y naturales. ¡Los recomiendo 100%!</p>
@@ -266,7 +269,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card" role="listitem">
                     <div class="testimonial-content">
                         <img src="img/Cliente3.avif" alt="Ana Martínez - Cliente recuperada con terapias de masoterapia de Ivette González" class="testimonial-image" loading="lazy">
                         <p class="testimonial-text" data-lang-es="Llegué con mucho estrés y dolores musculares. Después de unas sesiones con Ivette, he recuperado mi movilidad y mi bienestar. ¡Gracias!" data-lang-en="I arrived with a lot of stress and muscle pain. After a few sessions with Ivette, I have regained my mobility and well-being. Thank you!">Llegué con mucho estrés y dolores musculares. Después de unas sesiones con Ivette, he recuperado mi movilidad y mi bienestar. ¡Gracias!</p>
@@ -278,58 +281,58 @@
         </div>
     </section>
 
-    <section id="faq" class="faq">
+    <section id="faq" class="faq" aria-labelledby="faq-title">
         <div class="container">
-            <h2 class="section-title" data-lang-es="Preguntas Frecuentes sobre Masoterapia" data-lang-en="Frequently Asked Questions about Massage Therapy">Preguntas Frecuentes sobre Masoterapia</h2>
+            <h2 id="faq-title" class="section-title" data-lang-es="Preguntas Frecuentes sobre Masoterapia" data-lang-en="Frequently Asked Questions about Massage Therapy">Preguntas Frecuentes sobre Masoterapia</h2>
             <p class="section-description" data-lang-es="Resuelve todas tus dudas sobre nuestros servicios de masoterapia y jabones artesanales naturales." data-lang-en="Resolve all your doubts about our massage therapy services and natural handmade soaps.">Resuelve todas tus dudas sobre nuestros servicios de masoterapia y jabones artesanales naturales.</p>
             
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
                         <span data-lang-es="¿Qué tipos de masajes ofrecen?" data-lang-en="What types of massages do you offer?">¿Qué tipos de masajes ofrecen?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1">
                         <p data-lang-es="Ofrezco masajes relajantes, descontracturantes, terapéuticos y deportivos. Cada sesión se personaliza según las necesidades específicas de cada cliente." data-lang-en="I offer relaxing, deep tissue, therapeutic and sports massages. Each session is personalized according to the specific needs of each client.">Ofrezco masajes relajantes, descontracturantes, terapéuticos y deportivos. Cada sesión se personaliza según las necesidades específicas de cada cliente.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
                         <span data-lang-es="¿Los jabones son aptos para pieles sensibles?" data-lang-en="Are the soaps suitable for sensitive skin?">¿Los jabones son aptos para pieles sensibles?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2">
                         <p data-lang-es="Sí, todos mis jabones artesanales están elaborados con ingredientes naturales y son aptos para pieles sensibles. No contienen químicos agresivos, parabenos ni sulfatos." data-lang-en="Yes, all my handmade soaps are made with natural ingredients and are suitable for sensitive skin. They do not contain harsh chemicals, parabens or sulfates.">Sí, todos mis jabones artesanales están elaborados con ingredientes naturales y son aptos para pieles sensibles. No contienen químicos agresivos, parabenos ni sulfatos.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
                         <span data-lang-es="¿Cómo debo prepararme para una sesión de masajes?" data-lang-en="How should I prepare for a massage session?">¿Cómo debo prepararme para una sesión de masajes?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3">
                         <p data-lang-es="Recomiendo venir con ropa cómoda, haber ingerido una comida ligera al menos 1 hora antes y estar bien hidratado. Evite consumir alcohol antes de la sesión." data-lang-en="I recommend coming with comfortable clothes, having eaten a light meal at least 1 hour before and being well hydrated. Avoid consuming alcohol before the session.">Recomiendo venir con ropa cómoda, haber ingerido una comida ligera al menos 1 hora antes y estar bien hidratado. Evite consumir alcohol antes de la sesión.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
                         <span data-lang-es="¿Realizan envíos de jabones a otras regiones?" data-lang-en="Do you ship soaps to other regions?">¿Realizan envíos de jabones a otras regiones?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-4">
                         <p data-lang-es="Sí, realizamos envíos a todo Chile. Los tiempos de entrega varían según la ubicación, generalmente entre 2-5 días hábiles." data-lang-en="Yes, we ship throughout Chile. Delivery times vary depending on the location, generally between 2-5 business days.">Sí, realizamos envíos a todo Chile. Los tiempos de entrega varían según la ubicación, generalmente entre 2-5 días hábiles.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
                         <span data-lang-es="¿Qué métodos de pago aceptan?" data-lang-en="What payment methods do you accept?">¿Qué métodos de pago aceptan?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-5">
                         <p data-lang-es="Aceptamos transferencias bancarias, tarjetas de crédito/débito y efectivo. Para sesiones de masaje, también aceptamos pagos mediante seguro de salud según cobertura." data-lang-en="We accept bank transfers, credit/debit cards and cash. For massage sessions, we also accept payments through health insurance according to coverage.">Aceptamos transferencias bancarias, tarjetas de crédito/débito y efectivo. Para sesiones de masaje, también aceptamos pagos mediante seguro de salud según cobertura.</p>
                     </div>
                 </div>
@@ -412,6 +415,6 @@
         </div>
     </footer>
 
-    <script src="js/index.js?v=2026-02-08_2" ></script>
+    <script src="js/index.js?v=2026-02-08_3" ></script>
 </body>
 </html>

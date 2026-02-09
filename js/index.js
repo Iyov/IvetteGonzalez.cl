@@ -299,7 +299,7 @@ function preloadImages() {
     });
 }
 
-// Función para alternar preguntas FAQ - CORREGIDA Y OPTIMIZADA
+// Función para alternar preguntas FAQ - CORREGIDA Y OPTIMIZADA CON ACCESIBILIDAD
 function setupFaqToggle() {
     // Obtener elementos FAQ dinámicamente cuando se llama la función
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -313,17 +313,41 @@ function setupFaqToggle() {
         question.addEventListener('click', function() {
             const faqItem = this.parentElement;
             const isActive = faqItem.classList.contains('active');
+            const answerId = this.getAttribute('aria-controls');
             
             // Cerrar todas las preguntas abiertas
             const allFaqItems = document.querySelectorAll('.faq-item');
+            const allFaqQuestions = document.querySelectorAll('.faq-question');
+            
             allFaqItems.forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
             });
             
+            allFaqQuestions.forEach(q => {
+                if (q !== question) {
+                    q.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
             // Toggle la pregunta actual
             faqItem.classList.toggle('active');
+            
+            // Actualizar aria-expanded
+            if (isActive) {
+                this.setAttribute('aria-expanded', 'false');
+            } else {
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        // Soporte para navegación por teclado
+        question.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
         });
     });
 }
@@ -363,8 +387,13 @@ if (languageToggleBtn) {
 
 if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+        
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
+        
+        // Actualizar aria-expanded
+        hamburger.setAttribute('aria-expanded', !isExpanded);
     });
     
     // Cerrar menú hamburguesa al hacer clic en un enlace
@@ -372,7 +401,18 @@ if (hamburger && navLinks) {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
         });
+    });
+}
+
+// Soporte para navegación por teclado en el logo
+if (logoTop) {
+    logoTop.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            scrollToTop();
+        }
     });
 }
 
