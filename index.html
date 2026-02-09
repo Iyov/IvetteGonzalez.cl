@@ -33,13 +33,14 @@
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="img/Ivette_Gonzalez_Logo_500.png" />
     <meta name="theme-color" content="#8e44ad" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Ivette González" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <link rel="preload" href="css/font-awesome_6.4.0_all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="css/font-awesome_6.4.0_all.min.css"></noscript>
-    <link rel="stylesheet" href="css/index.css?v=2026-02-08_3" type="text/css" />
+    <link rel="stylesheet" href="css/index.css?v=2026-02-08_4" type="text/css" />
 
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -328,7 +329,7 @@
                 </div>
                 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5"></button>
                         <span data-lang-es="¿Qué métodos de pago aceptan?" data-lang-en="What payment methods do you accept?">¿Qué métodos de pago aceptan?</span>
                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </button>
@@ -340,37 +341,37 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" aria-labelledby="contact-title">
         <div class="container">
-            <h2 class="section-title" data-lang-es="Contacto - Agenda tu Sesión de Masoterapia" data-lang-en="Contact - Schedule your Massage Therapy Session">Contacto - Agenda tu Sesión de Masoterapia</h2>
+            <h2 id="contact-title" class="section-title" data-lang-es="Contacto - Agenda tu Sesión de Masoterapia" data-lang-en="Contact - Schedule your Massage Therapy Session">Contacto - Agenda tu Sesión de Masoterapia</h2>
             <p class="section-description" data-lang-es="Contáctanos para agendar tu sesión de masoterapia o consultar sobre nuestros jabones artesanales naturales. Estamos aquí para ayudarte a alcanzar tu bienestar integral." data-lang-en="Contact us to schedule your massage therapy session or inquire about our natural handmade soaps. We are here to help you achieve comprehensive wellness.">Contáctanos para agendar tu sesión de masoterapia o consultar sobre nuestros jabones artesanales naturales. Estamos aquí para ayudarte a alcanzar tu bienestar integral.</p>
             
             <div class="contact-content">
                 <p data-lang-es="Puedes contactarme a través de cualquiera de estas redes sociales:" data-lang-en="You can contact me through any of these social networks:">Puedes contactarme a través de cualquiera de estas redes sociales:</p>
                 
-                <div class="social-links">
-                    <a href="https://www.instagram.com/masoterapia.ivette/" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
+                <div class="social-links" role="list">
+                    <a href="https://www.instagram.com/masoterapia.ivette/" class="social-link" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Instagram de Masoterapia Ivette">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
                         <span>@Masoterapia.Ivette</span>
                     </a>
                     
-                    <a href="https://wa.me/56996138109" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/56996138109" class="social-link" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="WhatsApp de Ivette González">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         <span>+569 9613 8109</span>
                     </a>
                     
-                    <a href="https://web.facebook.com/ivette.rifo" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-facebook"></i>
+                    <a href="https://web.facebook.com/ivette.rifo" class="social-link" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Facebook de Ivette Rifo">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
                         <span>@ivette.rifo</span>
                     </a>
                     
-                    <a href="mailto:ivettegonzalezrifo@gmail.com" class="social-link" rel="noopener noreferrer">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:ivettegonzalezrifo@gmail.com" class="social-link" rel="noopener noreferrer" role="listitem" aria-label="Correo electrónico de Ivette González">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <span>ivettegonzalezrifo@gmail.com</span>
                     </a>
                     
-                    <a href="https://twitter.com/IveMasoterapia" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-x-twitter"></i>
+                    <a href="https://twitter.com/IveMasoterapia" class="social-link" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Twitter de Ivette Masoterapia">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
                         <span>@IveMasoterapia</span>
                     </a>
                 </div>
@@ -415,6 +416,6 @@
         </div>
     </footer>
 
-    <script src="js/index.js?v=2026-02-08_3" ></script>
+    <script src="js/index.js?v=2026-02-08_4" ></script>
 </body>
 </html>
