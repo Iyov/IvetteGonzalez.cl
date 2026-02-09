@@ -1,4 +1,4 @@
-// Elementos DOM
+// Elementos DOM - Con validación de existencia
 const themeToggleBtn = document.getElementById('theme-toggle');
 const languageToggleBtn = document.getElementById('language-toggle');
 const hamburger = document.querySelector('.hamburger');
@@ -8,7 +8,6 @@ const messageImage = document.getElementById('message-image');
 const backToTopBtn = document.getElementById('backToTop');
 const progressBar = document.getElementById('progressBar');
 const logoTop = document.getElementById('logoTop');
-const faqItems = document.querySelectorAll('.faq-item');
 
 // Mensajes motivacionales en español e inglés
 const motivationalMessages = {
@@ -32,28 +31,37 @@ const motivationalMessages = {
     ]
 };
 
-// Imágenes reales de masoterapia para cada día de la semana
+// Imágenes reales de masoterapia para cada día de la semana - RUTAS CORREGIDAS
 const backgroundImages = [
-    "url('../img/01.jpg')", // Domingo
-    "url('../img/02.jpg')", // Lunes
-    "url('../img/03.jpg')", // Martes
-    "url('../img/04.jpg')", // Miércoles
-    "url('../img/05.jpg')", // Jueves
-    "url('../img/06.jpg')", // Viernes
-    "url('../img/07.jpg')"  // Sábado
+    "url('img/01.jpg')", // Domingo
+    "url('img/02.jpg')", // Lunes
+    "url('img/03.jpg')", // Martes
+    "url('img/04.jpg')", // Miércoles
+    "url('img/05.jpg')", // Jueves
+    "url('img/06.jpg')", // Viernes
+    "url('img/07.jpg')"  // Sábado
 ];
 
 // Cargar preferencias guardadas
 function loadPreferences() {
+    // Validar que los elementos existan
+    if (!themeToggleBtn || !languageToggleBtn) {
+        console.warn('Elementos de control no encontrados');
+        return;
+    }
+    
     // Cargar tema
-    if (localStorage.getItem('theme') === 'dark') {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
         themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-        updateTooltip(themeToggleBtn, 'dark');
+        const currentLang = localStorage.getItem('language') || 'es';
+        updateTooltip(themeToggleBtn, currentLang);
     }
     
     // Cargar idioma
-    if (localStorage.getItem('language') === 'en') {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage === 'en') {
         switchLanguage('en');
         languageToggleBtn.innerHTML = '<i class="fas fa-globe-americas"></i>';
         updateTooltip(languageToggleBtn, 'en');
@@ -99,17 +107,26 @@ function switchLanguage(lang) {
     updateMotivationalMessage();
 }
 
-// Actualizar tooltips según el idioma
+// Actualizar tooltips según el idioma - FUNCIÓN CORREGIDA
 function updateTooltip(element, lang) {
+    if (!element) return;
+    
     if (lang === 'en') {
-        element.setAttribute('title', element.getAttribute('data-lang-en'));
+        const enText = element.getAttribute('data-lang-en');
+        if (enText) element.setAttribute('title', enText);
     } else {
-        element.setAttribute('title', element.getAttribute('data-lang-es'));
+        const esText = element.getAttribute('data-lang-es');
+        if (esText) element.setAttribute('title', esText);
     }
 }
 
 // Actualizar mensaje motivacional según el día
 function updateMotivationalMessage() {
+    if (!motivationalMessage || !messageImage) {
+        console.warn('Elementos de mensaje motivacional no encontrados');
+        return;
+    }
+    
     const dayOfWeek = new Date().getDay(); // 0 (domingo) a 6 (sábado)
     const language = localStorage.getItem('language') || 'es';
     
@@ -121,15 +138,21 @@ function updateMotivationalMessage() {
     
     // Actualizar el texto de la imagen según el idioma
     const imageText = messageImage.querySelector('span');
-    if (language === 'en') {
-        imageText.textContent = imageText.getAttribute('data-lang-en');
-    } else {
-        imageText.textContent = imageText.getAttribute('data-lang-es');
+    if (imageText) {
+        if (language === 'en') {
+            const enText = imageText.getAttribute('data-lang-en');
+            if (enText) imageText.textContent = enText;
+        } else {
+            const esText = imageText.getAttribute('data-lang-es');
+            if (esText) imageText.textContent = esText;
+        }
     }
 }
 
-// Función para la barra de progreso
+// Función para la barra de progreso - CON VALIDACIÓN
 function updateProgressBar() {
+    if (!progressBar) return;
+    
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight - windowHeight;
     const scrollPosition = window.scrollY;
@@ -137,8 +160,10 @@ function updateProgressBar() {
     progressBar.style.width = progress + '%';
 }
 
-// Función para mostrar/ocultar el botón de volver arriba
+// Función para mostrar/ocultar el botón de volver arriba - CON VALIDACIÓN
 function toggleBackToTop() {
+    if (!backToTopBtn) return;
+    
     if (window.scrollY > 300) {
         backToTopBtn.classList.add('show');
     } else {
@@ -154,64 +179,82 @@ function scrollToTop() {
     });
 }
 
-// Función para alternar preguntas FAQ - CORREGIDA
+// Función para alternar preguntas FAQ - CORREGIDA Y OPTIMIZADA
 function setupFaqToggle() {
+    // Obtener elementos FAQ dinámicamente cuando se llama la función
     const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    if (faqQuestions.length === 0) {
+        console.warn('No se encontraron elementos FAQ');
+        return;
+    }
     
     faqQuestions.forEach(question => {
         question.addEventListener('click', function() {
             const faqItem = this.parentElement;
-            faqItem.classList.toggle('active');
+            const isActive = faqItem.classList.contains('active');
             
-            // Cerrar otras preguntas abiertas (opcional)
-            faqItems.forEach(item => {
+            // Cerrar todas las preguntas abiertas
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            allFaqItems.forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
             });
+            
+            // Toggle la pregunta actual
+            faqItem.classList.toggle('active');
         });
     });
 }
 
-// Event Listeners
-themeToggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    if (document.body.classList.contains('dark-mode')) {
-        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', 'dark');
-        updateTooltip(themeToggleBtn, localStorage.getItem('language') || 'es');
-    } else {
-        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-        localStorage.setItem('theme', 'light');
-        updateTooltip(themeToggleBtn, localStorage.getItem('language') || 'es');
-    }
-});
-
-languageToggleBtn.addEventListener('click', () => {
-    const currentLang = localStorage.getItem('language') || 'es';
-    
-    if (currentLang === 'es') {
-        switchLanguage('en');
-        languageToggleBtn.innerHTML = '<i class="fas fa-globe-americas"></i>';
-    } else {
-        switchLanguage('es');
-        languageToggleBtn.innerHTML = '<i class="fas fa-globe"></i>';
-    }
-});
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-// Cerrar menú hamburguesa al hacer clic en un enlace
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+// Event Listeners - CON VALIDACIONES
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        const currentLang = localStorage.getItem('language') || 'es';
+        
+        if (document.body.classList.contains('dark-mode')) {
+            themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', 'dark');
+            updateTooltip(themeToggleBtn, currentLang);
+        } else {
+            themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', 'light');
+            updateTooltip(themeToggleBtn, currentLang);
+        }
     });
-});
+}
+
+if (languageToggleBtn) {
+    languageToggleBtn.addEventListener('click', () => {
+        const currentLang = localStorage.getItem('language') || 'es';
+        
+        if (currentLang === 'es') {
+            switchLanguage('en');
+            languageToggleBtn.innerHTML = '<i class="fas fa-globe-americas"></i>';
+        } else {
+            switchLanguage('es');
+            languageToggleBtn.innerHTML = '<i class="fas fa-globe"></i>';
+        }
+    });
+}
+
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Cerrar menú hamburguesa al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}
 
 // Event listeners para scroll
 window.addEventListener('scroll', () => {
@@ -219,17 +262,21 @@ window.addEventListener('scroll', () => {
     toggleBackToTop();
 });
 
-// Event listener para el botón de volver arriba
-backToTopBtn.addEventListener('click', scrollToTop);
+// Event listener para el botón de volver arriba - CON VALIDACIÓN
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', scrollToTop);
+}
 
-// Event listener para el logo
-logoTop.addEventListener('click', scrollToTop);
+// Event listener para el logo - CON VALIDACIÓN
+if (logoTop) {
+    logoTop.addEventListener('click', scrollToTop);
+}
 
-// Inicializar
+// Inicializar - CON VALIDACIONES
 document.addEventListener('DOMContentLoaded', () => {
     loadPreferences();
     updateMotivationalMessage();
     updateProgressBar();
     toggleBackToTop();
-    setupFaqToggle(); // Configurar el toggle de FAQ
+    setupFaqToggle(); // Configurar el toggle de FAQ después de que el DOM esté listo
 });
