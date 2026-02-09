@@ -25,12 +25,47 @@
     box-sizing: border-box;
 }
 
+/* Optimización de transiciones - Solo en elementos necesarios */
+header,
+.nav-links,
+.nav-links a,
+.control-btn,
+.hamburger span,
+.btn,
+.social-link,
+.testimonial-card,
+.faq-item,
+.back-to-top,
+.breadcrumb a {
+    transition: var(--transition);
+}
+
+/* Reducir transiciones en body para mejor performance */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    transition: var(--transition);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Mejora de performance para imágenes */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Fallback para imágenes que no cargan */
+.testimonial-image,
+.about-image img,
+.message-image {
+    background-color: var(--card-bg);
+    background-image: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+}
+
+/* Smooth scroll para toda la página */
+html {
+    scroll-behavior: smooth;
 }
 
 /* Barra de progreso */
@@ -71,16 +106,40 @@ body {
     transition: var(--transition);
     z-index: 999;
     box-shadow: var(--shadow);
+    border: none;
 }
 
 .back-to-top.show {
     opacity: 1;
     visibility: visible;
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(20px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
 }
 
 .back-to-top:hover {
     background-color: var(--secondary-color);
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:active {
+    transform: translateY(-2px);
 }
 
 /* Breadcrumbs */
@@ -89,6 +148,7 @@ body {
     padding: 10px 0;
     margin-top: 70px;
     border-bottom: 1px solid rgba(142, 68, 173, 0.1);
+    transition: var(--transition);
 }
 
 .breadcrumb {
@@ -98,11 +158,24 @@ body {
     margin: 0;
     padding: 0;
     font-size: 0.9rem;
+    flex-wrap: wrap;
 }
 
 .breadcrumb li {
     display: flex;
     align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .breadcrumb li:not(:last-child)::after {
@@ -120,6 +193,11 @@ body {
 
 .breadcrumb a:hover {
     color: var(--primary-color);
+}
+
+.breadcrumb li:last-child a {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .container {
@@ -170,10 +248,38 @@ header {
     transition: var(--transition);
     font-size: 0.9rem;
     white-space: nowrap;
+    position: relative;
+    padding-bottom: 5px;
 }
 
 .nav-links a:hover {
     color: var(--primary-color);
+}
+
+/* Indicador de sección activa */
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 .controls {
@@ -406,6 +512,7 @@ section {
     padding: 30px;
     max-width: 350px;
     transition: var(--transition);
+    will-change: transform;
 }
 
 .testimonial-card:hover {
@@ -424,6 +531,7 @@ section {
     object-fit: cover;
     margin: 0 auto 20px;
     border: 4px solid var(--primary-color);
+    display: block;
 }
 
 .testimonial-text {
@@ -481,6 +589,10 @@ section {
     transition: var(--transition);
 }
 
+.faq-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
 .faq-question {
     padding: 20px;
     cursor: pointer;
@@ -489,14 +601,17 @@ section {
     align-items: center;
     font-weight: 600;
     transition: var(--transition);
+    user-select: none;
 }
 
 .faq-question:hover {
     color: var(--primary-color);
+    background-color: rgba(142, 68, 173, 0.05);
 }
 
 .faq-question i {
-    transition: var(--transition);
+    transition: transform 0.3s ease;
+    color: var(--primary-color);
 }
 
 .faq-item.active .faq-question i {
@@ -507,11 +622,11 @@ section {
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.4s ease, padding 0.4s ease;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 300px;
+    max-height: 500px;
     padding: 0 20px 20px;
 }
 
@@ -617,7 +732,7 @@ footer {
         align-items: center;
         padding: 20px 0;
         box-shadow: var(--shadow);
-        transition: var(--transition);
+        transition: left 0.3s ease;
         z-index: 999;
     }
 
@@ -631,6 +746,11 @@ footer {
 
     .nav-links a {
         font-size: 1.1rem;
+    }
+    
+    /* Indicador activo en móvil */
+    .nav-links a.active::after {
+        bottom: -5px;
     }
 
     .hamburger {
@@ -692,6 +812,11 @@ footer {
 
     .footer-links li {
         margin: 10px 15px;
+    }
+    
+    /* Breadcrumbs en móvil */
+    .breadcrumb {
+        font-size: 0.8rem;
     }
 }
 

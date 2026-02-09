@@ -9,6 +9,27 @@ const backToTopBtn = document.getElementById('backToTop');
 const progressBar = document.getElementById('progressBar');
 const logoTop = document.getElementById('logoTop');
 
+// Throttle function para optimizar performance
+function throttle(func, wait) {
+    let timeout;
+    let lastRan;
+    
+    return function executedFunction(...args) {
+        if (!lastRan) {
+            func.apply(this, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                if ((Date.now() - lastRan) >= wait) {
+                    func.apply(this, args);
+                    lastRan = Date.now();
+                }
+            }, wait - (Date.now() - lastRan));
+        }
+    };
+}
+
 // Mensajes motivacionales en español e inglés
 const motivationalMessages = {
     es: [
@@ -179,6 +200,105 @@ function scrollToTop() {
     });
 }
 
+// Función para actualizar sección activa en el menú
+function updateActiveSection() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    
+    if (sections.length === 0 || navLinksItems.length === 0) return;
+    
+    const scrollPosition = window.scrollY + 100; // Offset para mejor detección
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            // Remover clase active de todos los links
+            navLinksItems.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Añadir clase active al link correspondiente
+            const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Actualizar breadcrumb
+            updateBreadcrumb(sectionId);
+        }
+    });
+}
+
+// Función para actualizar breadcrumbs dinámicamente
+function updateBreadcrumb(sectionId) {
+    const breadcrumb = document.querySelector('.breadcrumb');
+    if (!breadcrumb) return;
+    
+    const sectionNames = {
+        'home': { es: 'Inicio', en: 'Home' },
+        'about': { es: 'Quién Soy', en: 'About Me' },
+        'testimonials': { es: 'Testimonios', en: 'Testimonials' },
+        'faq': { es: 'FAQ', en: 'FAQ' },
+        'contact': { es: 'Contacto', en: 'Contact' },
+        'motivational': { es: 'Motivación', en: 'Motivation' }
+    };
+    
+    const currentLang = localStorage.getItem('language') || 'es';
+    const sectionName = sectionNames[sectionId];
+    
+    if (!sectionName) return;
+    
+    // Si estamos en home, mostrar solo inicio
+    if (sectionId === 'home') {
+        breadcrumb.innerHTML = `
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="https://ivettegonzalez.cl">
+                    <span itemprop="name">${sectionName[currentLang]}</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+        `;
+    } else {
+        // Mostrar inicio > sección actual
+        const homeText = currentLang === 'en' ? 'Home' : 'Inicio';
+        breadcrumb.innerHTML = `
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="https://ivettegonzalez.cl">
+                    <span itemprop="name">${homeText}</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="https://ivettegonzalez.cl/#${sectionId}">
+                    <span itemprop="name">${sectionName[currentLang]}</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        `;
+    }
+}
+
+// Función para precargar imágenes
+function preloadImages() {
+    const imageUrls = [
+        'img/01.jpg',
+        'img/02.jpg',
+        'img/03.jpg',
+        'img/04.jpg',
+        'img/05.jpg',
+        'img/06.jpg',
+        'img/07.jpg'
+    ];
+    
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
+
 // Función para alternar preguntas FAQ - CORREGIDA Y OPTIMIZADA
 function setupFaqToggle() {
     // Obtener elementos FAQ dinámicamente cuando se llama la función
@@ -256,11 +376,14 @@ if (hamburger && navLinks) {
     });
 }
 
-// Event listeners para scroll
-window.addEventListener('scroll', () => {
+// Event listeners para scroll - CON THROTTLE PARA MEJOR PERFORMANCE
+const throttledScrollHandler = throttle(() => {
     updateProgressBar();
     toggleBackToTop();
-});
+    updateActiveSection();
+}, 100); // Ejecutar máximo cada 100ms
+
+window.addEventListener('scroll', throttledScrollHandler);
 
 // Event listener para el botón de volver arriba - CON VALIDACIÓN
 if (backToTopBtn) {
@@ -272,6 +395,30 @@ if (logoTop) {
     logoTop.addEventListener('click', scrollToTop);
 }
 
+// Smooth scroll para todos los enlaces internos
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        
+        // Ignorar enlaces vacíos
+        if (href === '#' || href === '#!') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        
+        if (target) {
+            const headerOffset = 80; // Altura del header fijo
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
 // Inicializar - CON VALIDACIONES
 document.addEventListener('DOMContentLoaded', () => {
     loadPreferences();
@@ -279,4 +426,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressBar();
     toggleBackToTop();
     setupFaqToggle(); // Configurar el toggle de FAQ después de que el DOM esté listo
+    updateActiveSection(); // Actualizar sección activa al cargar
+    preloadImages(); // Precargar imágenes de fondo
 });
